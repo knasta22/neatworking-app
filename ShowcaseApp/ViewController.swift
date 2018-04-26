@@ -116,11 +116,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
 }
     //function to move rows
+//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        let contactsToMove = contacts[sourceIndexPath.row]
+//        contacts.remove(at: sourceIndexPath.row)
+//        contacts.insert(contactsToMove, at: destinationIndexPath.row)
+//        tableView.deleteRows(at: [sourceIndexPath], with: .fade)
+//        saveDefaultsData()
+//    }
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let contactsToMove = contacts[sourceIndexPath.row]
-        contacts.remove(at: sourceIndexPath.row)
-        contacts.insert(contactsToMove, at: destinationIndexPath.row)
-        tableView.deleteRows(at: [sourceIndexPath], with: .fade)
+        let contact = contacts[sourceIndexPath.row] //make a copy of the item you are going to move
+        contacts.remove(at: sourceIndexPath.row) //delete item from the original location (pre-move)
+        contacts.insert(contact, at: destinationIndexPath.row) //insert item into the "to", post-move, location
         saveDefaultsData()
     }
     
